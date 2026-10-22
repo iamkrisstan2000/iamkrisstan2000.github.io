@@ -1,0 +1,17 @@
+backend:
+  name: github
+  repo: your-username/your-repo-name
+  branch: main # or master, depending on your default branch
+
+media_folder: "public/images" # Adjust this to where your site stores uploaded images
+public_folder: "/images"
+
+collections:
+  - name: "blog"
+    label: "Blog"
+    folder: "content/blog" # Adjust to your markdown files folder
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Body", name: "body", widget: "markdown"}
