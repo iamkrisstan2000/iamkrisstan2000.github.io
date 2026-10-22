@@ -1,17 +1,15 @@
 backend:
-  name: github
-  repo: your-username/your-repo-name
-  branch: main # or master, depending on your default branch
+  name: turbo-github
+  turbo_site_id: 435dd0c3-96db-4e39-8c09-fe2a0f6a9da2 # Paste your Site ID from Decap Turbo
 
-media_folder: "public/images" # Adjust this to where your site stores uploaded images
+media_folder: "public/images"
 public_folder: "/images"
 
 collections:
   - name: "blog"
-    label: "Blog"
-    folder: "content/blog" # Adjust to your markdown files folder
+    label: "Blog Posts"
+    folder: "content/blog"
     create: true
     fields:
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Body", name: "body", widget: "markdown"}
