@@ -5,20 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KNIGHT — Content Manager</title>
   
-  <!-- Font Matching -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    /* Dark Theme Override for Decap CMS Panel */
     body {
       background-color: #0b0f17 !important;
       color: #f1f5f9 !important;
       font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
     }
 
-    /* Custom Styling for the Admin Header and Controls */
     div[class*="AppHeader"] {
       background-color: #111827 !important;
       border-bottom: 1px solid #1f2937 !important;
@@ -29,14 +26,12 @@
       border-right: 1px solid #1f2937 !important;
     }
 
-    /* Buttons & Primary Action Accents */
     button[class*="Button"], 
     a[class*="Button"] {
       border-radius: 9999px !important;
       font-weight: 600 !important;
     }
 
-    /* Live Preview Pane Styling (Matches your site cards) */
     .preview-pane {
       padding: 32px;
       background-color: #0b0f17;
@@ -69,8 +64,15 @@
       font-size: 28px;
       font-weight: 800;
       color: #ffffff;
-      margin: 0 0 12px 0;
+      margin: 0 0 4px 0;
       line-height: 1.2;
+    }
+
+    .preview-tagline {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 12px;
+      font-style: italic;
     }
 
     .preview-image {
@@ -102,10 +104,8 @@
   </style>
 </head>
 <body>
-  <!-- Decap CMS Core Script -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
-  <!-- Live Card Preview Template for Apps -->
   <script>
     CMS.registerPreviewStyle('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
@@ -114,13 +114,16 @@
         var entry = this.props.entry;
         var image = this.props.getAsset(entry.getIn(['data', 'image']));
         var title = entry.getIn(['data', 'title']) || 'App Title';
+        var tagline = entry.getIn(['data', 'tagline']) || '';
+        var category = entry.getIn(['data', 'category']) || 'PROJECT PREVIEW';
         var repoUrl = entry.getIn(['data', 'repo_url']) || '#';
         var body = this.props.widgetFor('body');
 
         return h('div', { className: 'preview-pane' },
           h('div', { className: 'preview-card' },
-            h('span', { className: 'preview-tag' }, '— PROJECT PREVIEW'),
+            h('span', { className: 'preview-tag' }, '— ' + category.toUpperCase()),
             h('h1', { className: 'preview-title' }, title),
+            tagline && h('div', { className: 'preview-tagline' }, tagline),
             image && h('img', { src: image.toString(), className: 'preview-image' }),
             h('div', { className: 'preview-body' }, body),
             repoUrl && h('a', { href: repoUrl, className: 'preview-btn', target: '_blank' }, 'View on GitHub →')
@@ -129,7 +132,6 @@
       }
     });
 
-    // Register preview template for your "apps" collection
     CMS.registerPreviewTemplate('apps', AppPreview);
   </script>
 </body>
