@@ -3,11 +3,134 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Content Manager</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <title>KNIGHT — Content Manager</title>
+  
+  <!-- Font Matching -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* Dark Theme Override for Decap CMS Panel */
+    body {
+      background-color: #0b0f17 !important;
+      color: #f1f5f9 !important;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+    }
+
+    /* Custom Styling for the Admin Header and Controls */
+    div[class*="AppHeader"] {
+      background-color: #111827 !important;
+      border-bottom: 1px solid #1f2937 !important;
+    }
+
+    div[class*="Sidebar"] {
+      background-color: #0f172a !important;
+      border-right: 1px solid #1f2937 !important;
+    }
+
+    /* Buttons & Primary Action Accents */
+    button[class*="Button"], 
+    a[class*="Button"] {
+      border-radius: 9999px !important;
+      font-weight: 600 !important;
+    }
+
+    /* Live Preview Pane Styling (Matches your site cards) */
+    .preview-pane {
+      padding: 32px;
+      background-color: #0b0f17;
+      color: #f1f5f9;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+    }
+
+    .preview-card {
+      background-color: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 650px;
+      margin: 0 auto;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    .preview-tag {
+      display: inline-block;
+      color: #38bdf8;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .preview-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0 0 12px 0;
+      line-height: 1.2;
+    }
+
+    .preview-image {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      margin: 16px 0;
+      border: 1px solid #1f2937;
+    }
+
+    .preview-body {
+      color: #94a3b8;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .preview-btn {
+      display: inline-flex;
+      align-items: center;
+      background: linear-gradient(135deg, #0284c7, #0284c7);
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      margin-top: 16px;
+    }
+  </style>
 </head>
 <body>
-  <!-- Include the script that builds the page and powers Decap CMS -->
+  <!-- Decap CMS Core Script -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <!-- Live Card Preview Template for Apps -->
+  <script>
+    CMS.registerPreviewStyle('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+    var AppPreview = createClass({
+      render: function() {
+        var entry = this.props.entry;
+        var image = this.props.getAsset(entry.getIn(['data', 'image']));
+        var title = entry.getIn(['data', 'title']) || 'App Title';
+        var repoUrl = entry.getIn(['data', 'repo_url']) || '#';
+        var body = this.props.widgetFor('body');
+
+        return h('div', { className: 'preview-pane' },
+          h('div', { className: 'preview-card' },
+            h('span', { className: 'preview-tag' }, '— PROJECT PREVIEW'),
+            h('h1', { className: 'preview-title' }, title),
+            image && h('img', { src: image.toString(), className: 'preview-image' }),
+            h('div', { className: 'preview-body' }, body),
+            repoUrl && h('a', { href: repoUrl, className: 'preview-btn', target: '_blank' }, 'View on GitHub →')
+          )
+        );
+      }
+    });
+
+    // Register preview template for your "apps" collection
+    CMS.registerPreviewTemplate('apps', AppPreview);
+  </script>
 </body>
 </html>
