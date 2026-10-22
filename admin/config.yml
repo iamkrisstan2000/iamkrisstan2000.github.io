@@ -1,15 +1,21 @@
 backend:
   name: turbo-github
-  turbo_site_id: 435dd0c3-96db-4e39-8c09-fe2a0f6a9da2 # Paste your Site ID from Decap Turbo
+  turbo_site_id: 435dd0c3-96db-4e39-8c09-fe2a0f6a9da2 # Keep your actual Site ID here
 
-media_folder: "public/images"
+media_folder: "public/images" # Directory where app screenshots will be saved
 public_folder: "/images"
 
 collections:
-  - name: "blog"
-    label: "Blog Posts"
-    folder: "content/blog"
+  - name: "apps"
+    label: "My Apps"
+    folder: "content/apps" # Where each app's data will be saved as markdown/YAML
     create: true
+    slug: "{{slug}}"
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "App Title", name: "title", widget: "string"}
+      - {label: "GitHub Repository URL", name: "repo_url", widget: "string"}
+      - {label: "Live Demo / Download Link", name: "demo_url", widget: "string", required: false}
+      - {label: "App Icon / Screenshot", name: "image", widget: "image"}
+      - {label: "Release Date", name: "date", widget: "datetime"}
+      - {label: "Tags / Technologies Used", name: "tags", widget: "list", required: false}
+      - {label: "App Description", name: "body", widget: "markdown"}
