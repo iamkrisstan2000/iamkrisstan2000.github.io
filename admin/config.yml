@@ -13,9 +13,11 @@ collections:
     slug: "{{slug}}"
     fields:
       - {label: "App Title", name: "title", widget: "string"}
+      - {label: "Tagline", name: "tagline", widget: "string", required: false, hint: "A short slogan (e.g., 'Local-first. Privacy by design.')"}
+      - {label: "Platform / Category", name: "category", widget: "select", options: ["Windows App", "Web Experiment", "Developer Tool", "Utility"], default: "Windows App"}
       - {label: "GitHub Repository URL", name: "repo_url", widget: "string"}
       - {label: "Live Demo / Download Link", name: "demo_url", widget: "string", required: false}
       - {label: "App Icon / Screenshot", name: "image", widget: "image"}
       - {label: "Release Date", name: "date", widget: "datetime"}
-      - {label: "Tags / Technologies Used", name: "tags", widget: "list", required: false}
+      - {label: "Technologies Used", name: "tags", widget: "list", required: false, hint: "e.g., C#, React, Electron, Rust"}
       - {label: "App Description", name: "body", widget: "markdown"}
