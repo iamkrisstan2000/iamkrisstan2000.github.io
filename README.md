@@ -30,4 +30,4 @@ The site is static and works from a project subpath (for example, `https://usern
 - `public/screenshots/` — locally bundled project screenshots
 - `.github/workflows/pages.yml` — GitHub Pages deployment
 
-Project descriptions and features are summarized from the associated public GitHub READMEs. PikturShift's README screenshot set is bundled locally and can be browsed in its project detail dialog.
+Project descriptions and features are summarized from the associated public GitHub READMEs. App screenshots are bundled locally as animated WebP showcases, including Tuhkar’s full-screen Android captures.
