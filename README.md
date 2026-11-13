@@ -1,6 +1,6 @@
 # KnightWin — Portfolio
 
-A responsive, static portfolio for Kris Tan (KnightWin), featuring app showcases, creator bio, support QR codes, and light/dark themes.
+A responsive, static portfolio for Kris Tan (KnightWin), featuring separate Android and Windows app collections, latest-release download links, a creator bio, support QR codes, and light/dark themes.
 
 ## Preview locally
 
