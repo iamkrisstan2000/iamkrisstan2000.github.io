@@ -30,4 +30,4 @@ The site is static and works from a project subpath (for example, `https://usern
 - `public/screenshots/` — locally bundled project screenshots
 - `.github/workflows/pages.yml` — GitHub Pages deployment
 
-Project descriptions and features are summarized from the associated public GitHub READMEs. App screenshots are bundled locally as animated WebP showcases, including Tuhkar’s full-screen Android captures.
+Project descriptions and features are summarized from the associated public GitHub READMEs. App screenshots are bundled locally as animated WebP showcases, including the latest Tuhkar V2 Android captures.
